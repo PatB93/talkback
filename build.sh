@@ -50,8 +50,8 @@ log "ls"; ls
 log
 
 
-require_environment_variable ANDROID_SDK
-require_folder_exists "${ANDROID_SDK}"
+require_environment_variable ANDROID_HOME
+require_folder_exists "${ANDROID_HOME}"
 require_environment_variable ANDROID_NDK
 require_folder_exists "${ANDROID_NDK}"
 require_environment_variable JAVA_HOME
@@ -60,7 +60,7 @@ log
 
 
 log "Write local.properties file"
-echo "sdk.dir=${ANDROID_SDK}" > local.properties
+echo "sdk.dir=${ANDROID_HOME}" > local.properties
 echo "ndk.dir=${ANDROID_NDK}" >> local.properties
 log "cat local.properties"; cat local.properties
 log
@@ -78,7 +78,7 @@ log
 GRADLE_UNZIP_HOSTING_FOLDER=/opt/gradle-${GRADLE_DOWNLOAD_VERSION}
 log "Unzip gradle zipfile ${GRADLE_ZIP_DEST_PATH} to ${GRADLE_UNZIP_HOSTING_FOLDER}"
 sudo unzip -n -d ${GRADLE_UNZIP_HOSTING_FOLDER} ${GRADLE_ZIP_DEST_PATH}
-GRADLE_BINARY=${GRADLE_UNZIP_HOSTING_FOLDER}/gradle-${GRADLE_DOWNLOAD_VERSION}/bin/gradle
+GRADLE_BINARY=/usr/local/Cellar/gradle@7/7.6.4/bin/gradle
 log "\${GRADLE_BINARY} = ${GRADLE_BINARY}"
 log "\${GRADLE_BINARY} -version"
 ${GRADLE_BINARY} -version
